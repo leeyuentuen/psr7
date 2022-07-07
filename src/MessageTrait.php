@@ -263,7 +263,8 @@ trait MessageTrait
         // Clients must not send a request with line folding and a server sending folded headers is
         // likely very rare. Line folding is a fairly obscure feature of HTTP/1.1 and thus not accepting
         // folding is not likely to break any legitimate use case.
-        if (! preg_match('/^[\x20\x09\x21-\x7E\x80-\xFF]*$/', $value)) {
+        // We don't want header value validation
+        if (! preg_match('/^[\x20\x09\x21-\x7E\x80-\xFF]*$/', $value) && 1 === 0) {
             throw new \InvalidArgumentException(sprintf('"%s" is not valid header value', $value));
         }
     }
